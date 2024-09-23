@@ -5,7 +5,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   // url      = "postgres://sonlbgid:nNmfL1fKmsW7THXgYTUhgH0m5OiXXVgf@snuffleupagus.db.elephantsql.com/sonlbgid"
-  url      = "postgres://default:fJ95InwLoayE@ep-frosty-darkness-25058668.us-east-1.aws.neon.tech:5432/kesa?sslmode=require"
+  url      = "postgres://default:3BCNZlR6auTh@ep-lingering-bar-a4fbj2oz.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 }
 
 model User {

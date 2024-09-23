@@ -83,19 +83,19 @@ export async function middleware(req: NextRequest) {
     });
     return response;
   }
-  // const authUser = (req as AuthenticatedRequest).user;
+  const authUser = (req as AuthenticatedRequest).user;
 
-  // if (
-  //   req.nextUrl.pathname.startsWith('/login') ||
-  //   (req.nextUrl.pathname.startsWith('/register') && authUser)
-  // ) {
-  //   return NextResponse.redirect(
-  //     new URL(
-  //       `/?${new URLSearchParams({ message: 'You are already logged in' })}`,
-  //       req.url
-  //     )
-  //   );
-  // }
+  if (
+    req.nextUrl.pathname.startsWith("/login") ||
+    (req.nextUrl.pathname.startsWith("/register") && authUser)
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        `/?${new URLSearchParams({ message: "You are already logged in" })}`,
+        req.url
+      )
+    );
+  }
   return response;
 }
 
