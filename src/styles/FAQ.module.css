@@ -1,0 +1,65 @@
+.pad {
+	background-color: #223a66;
+	padding: 15px;
+	margin-bottom: 60px;
+}
+
+.pad h1 {
+	color: white;
+}
+
+.FAQ {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	margin: 10px 0px 20px 0px;
+}
+
+.flex {
+	display: flex;
+	gap: 5px;
+	align-items: flex-start;
+}
+
+.FAQ p {
+	margin: 0 0 0 20px;
+}
+
+.flex h6 {
+	margin: 0;
+}
+.flex:hover > h6 {
+	color: var(--secondary-color);
+}
+
+.faq {
+	border-bottom: 1px solid #b2b2b2;
+}
+.close {
+	display: none;
+}
+
+.faq p {
+	line-height: 30px;
+	position: relative;
+	left: 22px;
+	top: -17px;
+}
+.FAQS {
+	padding: 0px 100px 90px 100px;
+}
+@media screen and (max-width: 800px) {
+	.FAQS {
+		padding: 0px 2rem 90px 2rem;
+	}
+	.pad h1 {
+		font-size: 28px;
+	}
+	.FAQ h6 {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.FAQS {
+		padding: 0px 1rem 90px 1rem;
+	}
+}

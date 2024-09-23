@@ -1,0 +1,241 @@
+.dashboard {
+  padding: 0px 1rem;
+}
+.dashboardLayout {
+  padding: 0px 100px 90px 100px;
+}
+.layout {
+  display: flex;
+  grid-auto-flow: column;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: baseline;
+  min-height: 800px;
+}
+.toggle {
+  position: relative;
+  left: 0px;
+  top: 11px;
+  font-size: 21px;
+  padding: 8px;
+  background: white;
+  border: solid #6f8ba42b 6px;
+}
+
+.nav {
+  display: block;
+}
+.navClose {
+  display: none;
+}
+
+.warning {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border: #f5c6cb 1px solid;
+}
+.details {
+  background-color: #fafbfe;
+  box-shadow: var(--shadow);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+.resFlex {
+  display: flex;
+  gap: 0.5rem;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.resFlex > div,
+.con {
+  padding: 1.25rem 1.6rem;
+  background-color: white;
+  margin: 1rem;
+  border-radius: 5px;
+}
+.conp {
+  /* width: 100%; */
+  background-color: white;
+  margin: 1rem;
+  border-radius: 5px;
+}
+.resFlex > div {
+  width: 100%;
+  border-bottom: 3px solid blue;
+}
+
+.over {
+  margin: 1rem -1rem -1rem 1rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 15px;
+  color: white;
+  background: blue;
+  border: none;
+  border-radius: 5px;
+  max-width: 200px;
+  margin: auto;
+  display: block;
+  margin-bottom: 15px;
+}
+.btn:disabled {
+  background-color: gray;
+}
+.btn_modal {
+  width: 100%;
+  padding: 15px;
+  color: var(--color-grey);
+  position: relative;
+  top: 37px;
+  background: white;
+  border: none;
+  border-radius: 5px;
+  max-width: 200px;
+  margin: auto;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* .details table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: scroll;
+  display: block;
+  overflow: scroll;
+} */
+
+.modal_pin {
+  position: relative;
+  transform: translate(-50%, -270%);
+  background: white;
+  left: 50%;
+  /* width: 320px;
+  height: 400px; */
+  /* padding-inline: 8px; */
+  padding-bottom: 10px;
+  border-radius: 8px;
+  z-index: 2000;
+  box-shadow: var(--shadow);
+}
+
+.editTransactionModal {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  left: 50%;
+  top: 48%;
+  width: 75vw;
+  padding: 1px 20px 68px;
+  height: 88%;
+  border-radius: 5px;
+  z-index: 2000;
+}
+
+.editTransactionModal form * {
+  font-size: 21px;
+  color: #000;
+  margin-bottom: 0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  height: 30px;
+}
+
+.cancel {
+  position: absolute;
+  margin: 0;
+  top: -2px;
+  left: 297px;
+  color: white;
+  border: solid;
+  padding: 3px 5px;
+}
+
+.transactionModalCancel {
+  position: absolute;
+  margin: 0;
+  top: 0%;
+  left: 98%;
+  border: solid;
+  padding: 3px 5px;
+  border-radius: 5px;
+  z-index: 10000000;
+  color: var(--color-grey);
+}
+
+.pin_error {
+  position: relative;
+  text-align: center;
+  top: 44px;
+  background: #e72613;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #80808075;
+  z-index: 200;
+}
+
+/* .details td,
+.details th {
+  border: 1px solid #dddddd;
+  padding: 6px;
+}
+.details th {
+  background-color: whitesmoke;
+}
+.details td {
+  text-align: center;
+} */
+.dashboardPage {
+  padding: 0px 100px 90px 100px;
+}
+
+@media screen and (max-width: 1050px) {
+  .resFlex {
+    flex-direction: column;
+  }
+  .resFlex > div {
+    width: unset;
+  }
+  .nav {
+    z-index: 2;
+    position: absolute;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .navClose {
+    position: absolute;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    left: -250px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .dashboardLayout {
+    padding: 0px 2rem 90px 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboardLayout {
+    padding: 0px 1rem 90px 1rem;
+  }
+}

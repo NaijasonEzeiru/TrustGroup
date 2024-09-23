@@ -1,0 +1,46 @@
+.footer {
+  background-color: var(--grey-bg);
+}
+
+.footer a {
+  color: #6f8ba4;
+}
+.sect1 {
+  flex: 0 0 66.666667%;
+  max-width: 56.666667%;
+}
+.sect1 h2 {
+  display: block;
+  width: fit-content;
+}
+.sect {
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+}
+
+.navLinks:hover,
+.navLinks a:hover {
+  color: var(--secondary-color) !important;
+  cursor: pointer !important;
+}
+
+.line {
+  position: relative;
+  display: block;
+  /* margin: auto; */
+  left: 0;
+  right: 0;
+  top: 3px;
+  content: "";
+  width: 50px;
+  height: 4px;
+  background-color: var(--secondary-color);
+}
+
+@media screen and (max-width: 600px) {
+  .footer span {
+    flex: unset;
+    width: 100%;
+    max-width: unset;
+  }
+}

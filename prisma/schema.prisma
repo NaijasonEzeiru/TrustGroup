@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = "postgres://sonlbgid:nNmfL1fKmsW7THXgYTUhgH0m5OiXXVgf@snuffleupagus.db.elephantsql.com/sonlbgid"
+  url      = "postgres://default:fJ95InwLoayE@ep-frosty-darkness-25058668.us-east-1.aws.neon.tech:5432/kesa?sslmode=require"
+}
+
+model User {
+  password_hash   String
+  fullName        String
+  phoneNumber     String        @unique
+  email           String        @unique
+  isAdmin         Boolean       @default(false)
+  created_at      DateTime      @default(now())
+  account_no      Int           @id @unique @default(autoincrement())
+  account_bal     Int           @default(0)
+  verified        Boolean       @default(false)
+  verifying       Boolean       @default(false)
+  pending_KYC     Boolean       @default(false)
+  // transaction_id  Int?          @unique
+  verification_id Int?          @unique
+  currency        String        @default("$")
+  transactions    Transaction[]
+  verification    Verification? @relation(fields: [verification_id], references: [id])
+}
+
+model Transaction {
+  id             Int      @id @default(autoincrement())
+  account        User     @relation(fields: [userAccount_no], references: [account_no])
+  amount         Int
+  charge         Int      @default(0)
+  type           String   @default("Deposit")
+  condition      String   @default("Completed")
+  cr_or_dr       String
+  currency       String
+  from           String   @default("Admin")
+  to             String
+  created_at     DateTime @default(now())
+  userAccount_no Int
+  note           String   @default("")
+}
+
+model Verification {
+  id           Int    @id @default(autoincrement())
+  users        User?
+  user_id      Int
+  identity_doc String
+  address_doc  String
+}

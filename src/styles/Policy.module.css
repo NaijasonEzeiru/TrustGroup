@@ -1,0 +1,28 @@
+.policy li {
+	list-style: inside;
+}
+
+.pad {
+	background-color: #223a66;
+	padding: 15px;
+}
+
+.pad h1 {
+	color: white;
+}
+
+.policy {
+	padding: 0px 100px 90px 100px;
+}
+
+@media screen and (max-width: 800px) {
+	.policy {
+		padding: 0px 2rem 90px 2rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.policy {
+		padding: 0px 1rem 90px 1rem;
+	}
+}

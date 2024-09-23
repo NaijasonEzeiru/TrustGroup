@@ -1,0 +1,60 @@
+.flex {
+  display: flex;
+  gap: 20px;
+}
+
+.box {
+  flex: 0 0 33.333333%;
+  max-width: 32%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 3px 25px #e6e6e6;
+}
+
+.icon {
+  color: var(--secondary-color);
+  font-size: 70px;
+}
+
+.boxCon {
+  margin: 70px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.boxCon h4 {
+  margin: 0px;
+}
+
+.boxCon a {
+  color: #6f8ba4;
+}
+
+.contactForm button {
+  padding: 15px;
+  color: white;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  display: block;
+  margin: auto;
+  border: none;
+  margin-top: 20px;
+}
+
+.contactForm {
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .flex {
+    display: block;
+  }
+  .box {
+    width: 100%;
+    max-width: unset;
+    flex: unset;
+  }
+}

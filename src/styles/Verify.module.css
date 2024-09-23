@@ -1,0 +1,54 @@
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 0.25rem;
+  margin: 19px auto;
+  box-shadow: 0 0 35px 0 rgb(154 161 171 / 15%);
+}
+
+.cardBody {
+  padding: 1.25rem 1.6rem;
+}
+
+.cardBody svg {
+  font-size: 3.5rem;
+}
+
+.cardBody p {
+  margin: 0;
+}
+
+.cardBody h5 {
+  margin: 37px 0px 3px 0px !important;
+}
+
+.cardBody label {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 2/1;
+  padding: 5px 10px;
+  color: #777;
+  background-color: #fff;
+  text-align: center;
+  border: 2px solid #ececec;
+  transition: border-color 0.15s linear;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardBody button {
+  width: 100%;
+  padding: 15px;
+  color: white;
+  background: blue;
+  border: none;
+  border-radius: 5px;
+  margin: 15px 0px;
+}
+
+.cardBody button:disabled {
+  background-color: #48484845;
+}

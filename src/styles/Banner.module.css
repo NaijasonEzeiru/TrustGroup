@@ -1,0 +1,19 @@
+.banner > div {
+	background-color: rgba(34, 58, 102, 0.95);
+	padding-bottom: 30px;
+}
+
+.sect {
+	width: 230px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.sect > * {
+	color: white;
+}
+
+.NM15 {
+	margin: -15px;
+}

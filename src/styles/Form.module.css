@@ -1,0 +1,47 @@
+.form {
+	background-color: white;
+	width: 470px;
+	padding: 50px;
+	border-radius: 5px;
+	margin: auto;
+	text-align: center;
+}
+.error {
+	color: red;
+	font-size: 12px;
+	height: 30px;
+}
+
+.background {
+	background-color: brown;
+}
+
+.form button {
+	width: 100%;
+	padding: 15px;
+	color: white;
+	background: blue;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+.form button:disabled {
+	background-color: #48484845;
+}
+
+.form label {
+	display: block;
+	margin: 10px;
+}
+
+.noDecor {
+	color: #6f8ba4;
+}
+
+@media screen and (max-width: 520px) {
+	.form {
+		width: 100%;
+		padding: 25px;
+	}
+}

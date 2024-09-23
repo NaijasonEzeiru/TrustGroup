@@ -1,0 +1,30 @@
+.aboutImg {
+	border-radius: 5px;
+	position: static !important;
+}
+
+.aboutImgCon {
+	width: 100%;
+	height: auto;
+}
+
+.aboutFlex {
+	display: flex;
+	gap: 40px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.aboutFlex > * {
+	flex: 1 0 50%;
+}
+
+@media screen and (max-width: 1000px) {
+	.aboutFlex {
+		flex-direction: column;
+	}
+	.aboutFlex > * {
+		flex: unset;
+		width: 100%;
+	}
+}
