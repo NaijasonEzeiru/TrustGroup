@@ -118,7 +118,7 @@ const SendMoney = () => {
       <div className="flex justify-center gap-3 flex-col items-center w-full">
         <MessageSquareWarning className="size-24 text-orange-700 mt-14" />
         <p className="text-3xl font-medium">Transaction Failed!!!</p>
-        <p>contact customer care - customercare@TrustGroupCU.com</p>
+        <p>contact customer care - customercare@trustgroupcreditunion.com</p>
       </div>
     );
   } else {
@@ -249,12 +249,12 @@ const SendMoney = () => {
               {trial == 1 ? (
                 <p className="mb-4 text-teal-800 ml-2.5">
                   Don&apos;t have COT code? Please contact us via
-                  customercare@TrustGroupCU.com
+                  customercare@trustgroupcreditunion.com
                 </p>
               ) : (
                 <p className="mb-4 text-teal-800 ml-2.5">
                   Don&apos;t have IMF code? Please contact us via
-                  customercare@TrustGroupCU.com
+                  customercare@trustgroupcreditunion.com
                 </p>
               )}
 
