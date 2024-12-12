@@ -26,6 +26,9 @@ const Details = () => {
           )}
         </div>
         <div className={styles.con}>
+          <p>{user?.fullName}</p>
+        </div>
+        <div className={styles.con}>
           <p>Account Number</p>
           <p>{user?.account_no}</p>
         </div>

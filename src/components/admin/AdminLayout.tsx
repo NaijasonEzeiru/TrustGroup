@@ -84,6 +84,7 @@ const AdminLayout = ({ children }: any) => {
             </Button>
           </div>
           <div className="flex-1 h-full">
+            <p className="text-2xl ml-7 my-5 font-bold">{user?.fullName}</p>
             {admin && <AdminDashboardNav />}
             {reg && <DashboardNav />}
           </div>

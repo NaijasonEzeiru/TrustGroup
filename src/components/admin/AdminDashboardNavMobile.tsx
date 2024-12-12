@@ -16,8 +16,11 @@ import {
 import { Accordion } from "../ui/accordion";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import { useContext } from "react";
+import AuthContext from "../AuthContext";
 
 const AdminDashboardNavMobile = () => {
+  const { user }: any = useContext(AuthContext);
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -32,6 +35,7 @@ const AdminDashboardNavMobile = () => {
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col">
         <nav className="grid gap-2 text-lg font-medium">
+          <p className="text-2xl ml-7 mt-4 font-bold">{user?.fullName}</p>
           <Accordion type="single" collapsible className="w-full">
             <Link
               href="/admin"

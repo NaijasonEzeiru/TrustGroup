@@ -38,6 +38,7 @@ const DashboardNavMobile = () => {
       <SheetContent side="left" className="flex flex-col">
         <nav className="grid gap-2 text-lg font-medium">
           <Accordion type="single" collapsible className="w-full">
+            <p className="text-2xl ml-7 mt-4 font-bold">{user?.fullName}</p>
             <Link
               href="/dashboard"
               className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
