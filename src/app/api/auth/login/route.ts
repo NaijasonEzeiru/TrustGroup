@@ -120,7 +120,10 @@ export const GET = async (request: NextRequest) => {
         });
         return response;
       } catch (err) {
-        return new NextResponse(JSON.stringify(err), { status: 500 });
+        console.log({ err });
+        return new NextResponse(JSON.stringify({ message: err }), {
+          status: 500,
+        });
       }
     }
   } else {

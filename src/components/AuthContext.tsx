@@ -1,16 +1,10 @@
 "use client";
 
-import {
-  createContext,
-  useState,
-  useEffect,
-  ReactNode,
-  useReducer,
-} from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { API_URL } from "@/helpers/vars";
 
-interface IUser {
+export interface IUser {
   email: string;
   isAdmin: boolean;
   fullName: string;
@@ -21,8 +15,10 @@ interface IUser {
   verified: boolean;
   verifying: boolean;
   pending_KYC: boolean;
+  verification: null | { identity_doc: string; address_doc: string };
   verification_id: number | null;
   currency: string;
+  transactions?: [];
 }
 
 interface IContext {

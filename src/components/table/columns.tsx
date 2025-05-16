@@ -1,4 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
+import { IUser } from "../AuthContext";
+import { VerifyOptions } from "./cell";
 
 type Transaction = {
   // id: 4,
@@ -142,5 +144,26 @@ export const usersColumns: ColumnDef<Users>[] = [
     cell: ({ row }) => (
       <div>{!!row.getValue("verified") ? "Verified" : "Unverified"}</div>
     ),
+  },
+];
+
+export const VerifyColumns: ColumnDef<IUser>[] = [
+  {
+    accessorKey: "account_no",
+    header: "A/C Number",
+  },
+  {
+    accessorKey: "fullName",
+    header: "Name",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      return <VerifyOptions original={row.original} />;
+    },
   },
 ];
