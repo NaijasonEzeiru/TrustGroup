@@ -116,7 +116,7 @@ const DashboardNav = () => {
           <BiSupport />
         </Dropdown>
         <Link
-          href={"/dashboard"}
+          href={"/dashboard/transactions"}
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-muted"
         >
           <HiDocumentReport />

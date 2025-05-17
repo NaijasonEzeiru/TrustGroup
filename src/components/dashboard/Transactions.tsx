@@ -1,3 +1,5 @@
+"use client";
+
 import AuthContext from "@/components/AuthContext";
 import React, { useContext, useState } from "react";
 // import { format } from 'date-fns';
