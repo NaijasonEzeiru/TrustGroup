@@ -6,7 +6,7 @@ import { DataTable } from "../table/data-table";
 import { transactionsColumns } from "../table/columns";
 
 const Transactions = () => {
-  const { user }: any = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <>
@@ -14,7 +14,7 @@ const Transactions = () => {
       {user?.transactions && (
         <DataTable
           columns={transactionsColumns}
-          data={user?.transactions}
+          data={user?.trans}
           isLoading={false}
         />
       )}

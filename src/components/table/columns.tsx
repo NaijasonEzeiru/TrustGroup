@@ -1,90 +1,51 @@
+import { TransactionsSchema } from "@/helpers/schema";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
+import { z } from "zod";
 import { IUser } from "../AuthContext";
-import { VerifyOptions } from "./cell";
+import { Cell, VerifyOptions } from "./cell";
 
-type Transaction = {
-  // id: 4,
-  amount: number;
-  charge: number;
-  type: string;
-  condition: string;
-  cr_or_dr: "CR" | "DR";
-  currency: string;
-  from: string;
-  to: string;
-  created_at: string;
-  userAccount_no: number;
-}[];
-
-type Users = {
-  fullName: string;
-  phoneNumber: string;
-  email: string;
-  created_at: string;
-  account_no: number;
-  account_bal: number;
-  verified: boolean;
-  verifying: boolean;
-  pending_KYC: boolean;
-  verification_id: null;
-  currency: string;
-  verification: null;
-  transactions: Transaction[];
-}[];
-
-export const transactionsColumns: ColumnDef<Transaction>[] = [
+export const transactionsColumns: ColumnDef<
+  z.infer<typeof TransactionsSchema>
+>[] = [
   {
-    accessorKey: "created_at",
+    accessorKey: "date",
     header: "Date",
-    cell: ({ row }) => {
-      const date = new Date(row.getValue("created_at"));
-      date.toISOString().substring(0, 10);
-      return <div>{row.getValue("created_at").slice(0, 10)}</div>;
+    cell: ({ getValue }) => {
+      return <div>{format(getValue(), "PPP")}</div>;
     },
   },
   {
-    accessorKey: "currency",
-    header: "Currency",
-  },
-  {
-    accessorKey: "amount",
-    header: "Amount",
+    header: "Description",
     cell: ({ row }) => {
-      const amount = row.getValue("amount").toLocaleString();
-      return <div>{amount}</div>;
-    },
-  },
-  {
-    accessorKey: "charge",
-    header: "Charge",
-  },
-  {
-    header: "Grand Total",
-    cell: ({ row }) => {
-      const type = row.getValue("cr_or_dr");
-      const amount = row.getValue("amount").toLocaleString();
       return (
-        <div className={type == "CR" ? "text-green-500" : "text-orange-700"}>
-          {amount}
+        <div>
+          {row.original.accountName} - {row.original.note}
         </div>
       );
     },
   },
   {
-    accessorKey: "cr_or_dr",
-    header: "DR/CR",
+    accessorKey: "id",
+    header: "Ref.",
   },
   {
-    accessorKey: "type",
-    header: "Type",
-  },
-  {
-    header: "Method",
-    cell: () => <div>Manual</div>,
-  },
-  {
-    accessorKey: "condition",
-    header: "Status",
+    accessorKey: "amount",
+    header: "Amount ($)",
+    cell: ({ row }) => {
+      return (
+        <div
+          className={`${
+            row.original.type == "Deposit"
+              ? "text-green-700"
+              : "text-orange-700"
+          }`}
+        >
+          {row.original.type == "Withdrawal" && "-"}{" "}
+          {row.original.amount.toLocaleString()}
+        </div>
+      );
+    },
   },
 ];
 
@@ -111,7 +72,7 @@ export const loanColumns = [
   },
 ];
 
-export const usersColumns: ColumnDef<Users>[] = [
+export const UsersColumns: ColumnDef<IUser>[] = [
   {
     accessorKey: "account_no",
     header: "A/C Number",
@@ -120,10 +81,10 @@ export const usersColumns: ColumnDef<Users>[] = [
     accessorKey: "fullName",
     header: "Name",
   },
-  {
-    accessorKey: "email",
-    header: "Email",
-  },
+  // {
+  //   accessorKey: "email",
+  //   header: "Email",
+  // },
   {
     accessorKey: "phoneNumber",
     header: "Phone No",
@@ -135,15 +96,22 @@ export const usersColumns: ColumnDef<Users>[] = [
       const date = new Date(row.getValue("created_at"));
       // date.toISOString().substring(0, 10);
       console.log({ verified: row.getValue("verified"), date });
-      return <div>{row.getValue("created_at").slice(0, 10)}</div>;
+      return <div>{date.toISOString().slice(0, 10)}</div>;
     },
   },
+  // {
+  //   accessorKey: "verified",
+  //   header: "Status",
+  //   cell: ({ row }) => (
+  //     <div>{!!row.getValue("verified") ? "Verified" : "Unverified"}</div>
+  //   ),
+  // },
   {
-    accessorKey: "verified",
-    header: "Status",
-    cell: ({ row }) => (
-      <div>{!!row.getValue("verified") ? "Verified" : "Unverified"}</div>
-    ),
+    id: "actions",
+    enableHiding: false,
+    cell: ({ row }) => {
+      return <Cell row={row} />;
+    },
   },
 ];
 

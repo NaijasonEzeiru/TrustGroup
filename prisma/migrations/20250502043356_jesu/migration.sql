@@ -12,7 +12,8 @@ CREATE TABLE "User" (
     "verifying" BOOLEAN NOT NULL DEFAULT false,
     "pending_KYC" BOOLEAN NOT NULL DEFAULT false,
     "verification_id" INTEGER,
-    "currency" TEXT NOT NULL DEFAULT '$',
+    "currency" TEXT NOT NULL DEFAULT '€',
+    "pin" TEXT NOT NULL DEFAULT '771947',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("account_no")
 );

@@ -2,7 +2,7 @@
 
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { API_URL } from "@/helpers/vars";
+// import type {} from "@prisma/client"
 
 export interface IUser {
   email: string;
@@ -51,9 +51,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   const login = async ({ email, password }: any) => {
-    console.log(email);
     setLoading(true);
-    const res = await fetch(`${API_URL}/auth/login`, {
+    const res = await fetch(`/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,15 +66,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }),
     });
     const data = await res.json();
-    console.log(data);
+    console.log({ loginDAta: data });
     setLoading(false);
     if (res?.ok) {
-      setUser({ ...data });
+      setUser(data);
       router.refresh();
       // user?.isAdmin ? router.push("/dashboard") : router.push("/admin");
       if (user?.isAdmin) {
         window.location.href = "/dashboard";
+        // router.push("/dashboard");
       } else {
+        // router.push("/admin");
         window.location.href = "/admin";
       }
     } else {
@@ -85,7 +86,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signout = async () => {
-    const res = await fetch(`${API_URL}/auth/logout`, {
+    const res = await fetch(`/api/auth/logout`, {
       method: "POST",
       credentials: "include",
       cache: "no-store",
@@ -98,12 +99,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     checkUserLoggedIn();
-    console.log({ auth: user });
+    // getAllUsers();
   }, []);
 
-  const checkUserLoggedIn = async () => {
-    console.log("effect");
-    const res = await fetch(`${API_URL}/auth/login`, {
+  console.log({ users });
+
+  async function checkUserLoggedIn() {
+    const res = await fetch(`/api/auth/login`, {
       method: "GET",
       credentials: "include",
       cache: "no-store",
@@ -120,10 +122,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       setAuthChecking(false);
     }
-  };
+  }
   const getAllUsers = async () => {
-    console.log("effect");
-    const res = await fetch(`${API_URL}/user`, {
+    const res = await fetch(`/api/user`, {
       method: "GET",
       credentials: "include",
       cache: "no-store",
