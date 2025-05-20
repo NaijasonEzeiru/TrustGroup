@@ -4,8 +4,10 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // url      = "postgres://sonlbgid:nNmfL1fKmsW7THXgYTUhgH0m5OiXXVgf@snuffleupagus.db.elephantsql.com/sonlbgid"
-  url      = "postgres://default:3BCNZlR6auTh@ep-lingering-bar-a4fbj2oz.us-east-1.aws.neon.tech:5432/verceldb"
+  // url      = "postgres://default:3BCNZlR6auTh@ep-lingering-bar-a4fbj2oz.us-east-1.aws.neon.tech:5432/verceldb"
+  url      = "postgres://default:3BCNZlR6auTh@ep-lingering-bar-a4fbj2oz-pooler.us-east-1.aws.neon.tech/verceldb?sslmode=require&connect_timeout=10&connection_limit=5&pgbouncer=true"
+  // url      = "postgres://neondb_owner:npg_sgUDaycm2EI4@ep-dark-base-a4tl2gvg-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+  // url      = "postgresql://trustgroup:3MZIU1DSthYNZsBX9VG87z0KK8rMqefx@dpg-d0m54395pdvs738tus6g-a.oregon-postgres.render.com/trustgroup?connect_timeout=300&connection_limit=100"
 }
 
 model User {
