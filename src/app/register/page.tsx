@@ -12,6 +12,7 @@ import "react-phone-number-input/style.css";
 // import AuthContext from '@/components/AuthContext';
 // import Spinner from '@/components/Spinner';
 import { API_URL } from "@/helpers/vars";
+import { toast } from "sonner";
 
 const Register: FC = () => {
   const [error, setError] = useState(null) as any;
@@ -45,11 +46,14 @@ const Register: FC = () => {
     });
     const data = await res.json();
     if (res.ok) {
-      console.log(data);
+      // toast.success("Registration successful.", {
+      //   description: "Please log in",
+      // });
+      alert("Registration successful.\n Please log in");
       router.push("/login");
     } else {
-      setError(data.message);
-      error ?? console.log(error);
+      alert(data?.message || "Something went wrong");
+      // toast.error(data?.message || "Something went wrong");
     }
     // } else {
     // 	setError(

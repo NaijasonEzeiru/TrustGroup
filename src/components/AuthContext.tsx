@@ -70,15 +70,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(false);
     if (res?.ok) {
       setUser(data);
-      router.refresh();
-      // user?.isAdmin ? router.push("/dashboard") : router.push("/admin");
-      if (user?.isAdmin) {
-        // window.location.href = "/dashboard";
-        router.push("/dashboard");
-      } else {
-        router.push("/admin");
-        // window.location.href = "/admin";
-      }
+      router.push("/dashboard");
     } else {
       setError(data.message);
       error ?? console.log(error);

@@ -7,11 +7,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, LoginSchemaType } from "../../helpers/schema";
 import AuthContext from "@/components/AuthContext";
-import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
-  const { login, error, user }: any = useContext(AuthContext);
+  const { login, error } = useContext(AuthContext);
 
   // const router = useRouter();
 
@@ -38,7 +37,7 @@ const Login = () => {
         {error && <h6 className={styles.error}>{error}</h6>}
         <h2>TrustGroupCU</h2>
         <h6>Login To Your Account</h6>
-        <form onSubmit={handleSubmit(login)} method="POST">
+        <form onSubmit={handleSubmit(login!)} method="POST">
           <input
             type="email"
             placeholder="Email"
