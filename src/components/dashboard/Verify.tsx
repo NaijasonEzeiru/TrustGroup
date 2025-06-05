@@ -7,7 +7,6 @@ import Image from "next/image";
 import { TbCloudUpload } from "react-icons/tb";
 import AuthContext from "../AuthContext";
 import { useRouter } from "next/navigation";
-import { API_URL } from "@/helpers/vars";
 
 const Verify = () => {
   const { user, checkUserLoggedIn }: any = useContext(AuthContext);
@@ -20,43 +19,50 @@ const Verify = () => {
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    const formData = new FormData();
-    // const images = [img1, img2];
-    // for (let i = 0; i < images.length; i++) {
-    // 	formData.append("images[]", images[i]);
-    // }
-    formData.append("file", img1);
-    formData.append("upload_preset", "u16vszak");
-    formData.append("cloud_name", "dyez5iyvm");
-    const identityVerification = await fetch(
-      `https://api.cloudinary.com/v1_1/dyez5iyvm/image/upload`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-    formData.append("file", img2);
-    formData.append("upload_preset", "u16vszak");
-    formData.append("cloud_name", "dyez5iyvm");
-    const addressVerification = await fetch(
-      `https://api.cloudinary.com/v1_1/dyez5iyvm/image/upload`,
-      {
-        method: "POST",
-        body: formData,
-        keepalive: true,
-      }
-    );
-
-    const idVerification = await identityVerification.json();
-    const adVerification = await addressVerification.json();
     const { account_no } = user;
-    const identity_doc = idVerification.url;
-    const address_doc = adVerification.url;
+    // const formData = new FormData();
+    // formData.append("account_no", account_no);
+    // formData.append("images[]", img1);
+    // formData.append("images[]", img2);
+    // try {
+    //   const res = await fetch("/api/user/verify", {
+    //     method: "POST",
+    //     body: formData,
+    //     keepalive: true,
+    //   });
+    //   const data = await res.json();
+    //   setIsSubmitting(false);
+    //   if (res.ok) {
+    //     checkUserLoggedIn();
+    //     router.push("/dashboard");
+    //   } else {
+    //     alert(data.message || "Documents not submitted. Something went wrong");
+    //     console.error(data.message);
+    //   }
+    // } catch (err) {
+    //   console.error({ err });
+    //   alert("Documents not submitted. Something went wrong");
+    // }
 
-    console.log({ id: idVerification.url, ad: adVerification.url });
+    const imgObjects = await Promise.all(
+      [img1, img2].map(async (v) => {
+        const formInput = new FormData();
+        formInput.append("file", v);
+        formInput.append("upload_preset", "u16vszak");
+        const res = fetch(
+          "https://api.cloudinary.com/v1_1/dyez5iyvm/image/upload",
+          {
+            method: "POST",
+            body: formInput,
+          }
+        );
+        return (await res).json();
+      })
+    );
+    const [identity_doc, address_doc] = imgObjects.map((a) => a.secure_url);
 
-    if (identityVerification.ok && addressVerification.ok) {
-      const VerificationSubmit = await fetch(`${API_URL}/user/verify`, {
+    if (identity_doc && address_doc) {
+      const VerificationSubmit = await fetch("/api/user/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,11 +80,12 @@ const Verify = () => {
         checkUserLoggedIn();
         router.push("/dashboard");
       } else {
+        alert(data.message || "Documents not submitted. Something went wrong");
         console.error(data.message);
       }
     } else {
       setIsSubmitting(false);
-      console.log("error");
+      alert("Documents not submitted. Something went wrong");
     }
   };
 
@@ -111,7 +118,7 @@ const Verify = () => {
                     <input
                       {...bind1}
                       type="file"
-                      accept="image/*"
+                      accept=".png, .jpg, .jpeg, .webp"
                       id="productImage1"
                       hidden
                       required
@@ -136,7 +143,7 @@ const Verify = () => {
                     <input
                       {...bind2}
                       type="file"
-                      accept="image/*"
+                      accept=".png, .jpg, .jpeg, .webp"
                       id="productImage2"
                       hidden
                       required

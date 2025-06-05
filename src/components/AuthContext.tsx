@@ -2,7 +2,6 @@
 
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
-// import type {} from "@prisma/client"
 
 export interface IUser {
   email: string;
@@ -70,7 +69,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(false);
     if (res?.ok) {
       setUser(data);
-      router.push("/dashboard");
+      if (user?.isAdmin) {
+        router.push("/admin");
+      } else {
+        router.push("/dashboard");
+      }
     } else {
       setError(data.message);
       error ?? console.log(error);
